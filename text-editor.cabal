@@ -1,0 +1,51 @@
+name:                text-editor
+version:             0.1.0.0
+-- synopsis:
+-- description:
+homepage:            https://github.com/daig/text-editor#readme
+license:             BSD3
+license-file:        LICENSE
+author:              David Girardo
+maintainer:          david.girardo@mit.edu
+copyright:           Sodality
+category:            Web
+build-type:          Simple
+extra-source-files:  README.md
+cabal-version:       >=1.10
+
+library
+  hs-source-dirs:      src
+  exposed-modules:     Rope,Cmd,Env
+  ghc-options:         -Wall
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+                      ,fingertree
+                      ,bytestring
+                      ,attoparsec
+                      ,mtl
+                      ,dlist
+
+executable text-editor-exe
+  hs-source-dirs:      app
+  main-is:             Main.hs
+  ghc-options:         -Wall -threaded -rtsopts -with-rtsopts=-N
+  default-language:    Haskell2010
+  build-depends:       base
+                     , text-editor
+                     , optparse-applicative
+                     , mtl
+                     , bytestring
+                     , QuickCheck
+
+test-suite text-editor-test
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             Spec.hs
+  ghc-options:         -Wall -threaded -rtsopts -with-rtsopts=-N
+  default-language:    Haskell2010
+  build-depends:       base
+                     , text-editor
+                     , bytestring
+                     , QuickCheck
+                      ,quickcheck-instances
+                      ,HUnit
